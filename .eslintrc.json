@@ -25,7 +25,17 @@
       }
     ],
     "no-console": 1,
+ jhtr--individual
+    "quotes": [
+      "error",
+      "double",
+      {
+        "allowTemplateLiterals": true
+      }
+    ],
+
     "quotes": ["error", "double", { "allowTemplateLiterals": true }],
+main
     "func-names": 0,
     "space-unary-ops": 2,
     "space-in-parens": "error",
