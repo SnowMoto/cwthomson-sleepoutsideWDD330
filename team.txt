@@ -1,10 +1,8 @@
-Trello board: https://trello.com/b/02NBZH11/wdd230-team-work
+Trello Link:
+https://trello.com/b/02NBZH11/wdd230-team-work
 
-
-
-Team members:
-- 
-- 
-- Johann Tellez
-- 
-- 
+===============
+Chelsea Thomson
+Michael Menjivar
+Johann Tellez
+Lucas Araujo
