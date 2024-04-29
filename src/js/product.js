@@ -1,7 +1,7 @@
 import { setLocalStorage, getLocalStorage } from "./utils.mjs";
 import ProductData from "./ProductData.mjs";
 
-const dataSource = new ProductData("tents");
+const dataSource = new ProductData("ents");
 
 function addProductToCart(product) {
   let cartItems = [];
