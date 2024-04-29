@@ -1,7 +1,7 @@
 # sleepoutside
 
 ## Netlify Link
-[LINK] (https://main--fantastic-centaur-ee3120.netlify.app/)
+[LINK](https://main--fantastic-centaur-ee3120.netlify.app/)
 
 ## Description
 
