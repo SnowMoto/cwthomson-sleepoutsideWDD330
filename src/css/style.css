@@ -120,11 +120,26 @@ button {
 .cart svg {
   width: 25px;
 }
+
 .cart:hover svg {
   fill: gray;
 }
-
 /* End cart icon styles */
+
+/* Styles for superscript above cart backpack icon */
+div.cart #superscript {
+  background-color: var(--primary-color);
+  color: var(--dark-grey);
+  border-radius: 1rem;
+  display: block;
+  font-weight: 700;
+  font-size: 10pt;
+  padding: .1rem .3rem;
+  position: absolute;
+  right: -5px;
+  top: 1rem;
+}
+/* End supercript styles */
 
 .mission {
   padding: 0 0.5em;
