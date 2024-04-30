@@ -200,6 +200,20 @@ div.cart #superscript {
   width: 100%;
 }
 
+/* Styles for product discount on product detail page */
+.product-card__price span {
+  display: block;
+  font-size: var(--small-font);
+  margin-top: .5rem;
+}
+.product-card__price b {
+  background-color: rgb(180, 0, 0);
+  color: white;
+  padding: .3rem;
+  border-radius: 10px;
+}
+/* End styles for discount on detail page */
+
 /* Start cart list card styles */
 .cart-card {
   display: grid;
