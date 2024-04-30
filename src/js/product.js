@@ -1,5 +1,6 @@
 import { setLocalStorage, getLocalStorage } from "./utils.mjs";
 import ProductData from "./ProductData.mjs";
+import updateCartSuperscript from "./superscriptCart.js";
 
 const dataSource = new ProductData("tents");
 
@@ -11,6 +12,7 @@ function addProductToCart(product) {
   }
   cartItems.push(product);
   setLocalStorage("so-cart", cartItems);
+  updateCartSuperscript();
 }
 // add to cart button event handler
 async function addToCartHandler(e) {
