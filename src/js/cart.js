@@ -3,9 +3,13 @@ import { getLocalStorage } from "./utils.mjs";
 function renderCartContents() {
   const cartItems = getLocalStorage("so-cart");
 
-  const htmlItems = cartItems.map((item) => cartItemTemplate(item));
-  document.querySelector(".product-list").innerHTML = htmlItems.join("");
-}
+if (cartItems && cartItems.length > 0) {
+    const htmlItems = cartItems.map((item) => cartItemTemplate(item));
+    document.querySelector(".product-list").innerHTML = htmlItems.join("");
+  } else {
+    // If cart is empty, display a message or perform any other action
+    document.querySelector(".product-list").innerHTML = "<p>Your cart is empty.</p>";
+  }
 
 function cartItemTemplate(item) {
   const newItem = `<li class="cart-card divider">
