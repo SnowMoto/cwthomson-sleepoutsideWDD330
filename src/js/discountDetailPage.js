@@ -2,7 +2,7 @@ import ProductData from "./ProductData.mjs";
 
 const dataSource = new ProductData("tents");
 
-async function addDiscountDetails(productId) {
+async function addDiscountDetails() {
     const product = await dataSource.findProductById(productId);
 
     // Select product card price for adding suggested retail price and discount
@@ -25,5 +25,5 @@ async function addDiscountDetails(productId) {
     }
 }
 
-const productId = document.querySelector('#addToCart').getAttribute("data-id");
+const productId = document.querySelector("#addToCart").getAttribute("data-id");
 addDiscountDetails(productId);
