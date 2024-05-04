@@ -85,7 +85,7 @@ header {
   margin-top: -1.3em;
 }
 
-.logo--square > div {
+.logo--square>div {
   margin-top: -1.7em;
 }
 
@@ -108,6 +108,7 @@ button {
 .divider {
   border-bottom: 2px solid var(--primary-color);
 }
+
 /* End utility classes */
 
 /* Cart icon styles */
@@ -124,6 +125,7 @@ button {
 .cart:hover svg {
   fill: gray;
 }
+
 /* End cart icon styles */
 
 /* Styles for superscript above cart backpack icon */
@@ -139,6 +141,7 @@ div.cart #superscript {
   right: -5px;
   top: 1rem;
 }
+
 /* End supercript styles */
 
 .mission {
@@ -188,6 +191,7 @@ div.cart #superscript {
 .card__name {
   font-size: 1em;
 }
+
 /* End product list card */
 
 .product-detail {
@@ -206,12 +210,14 @@ div.cart #superscript {
   font-size: var(--small-font);
   margin-top: .5rem;
 }
+
 .product-card__price b {
   background-color: rgb(180, 0, 0);
   color: white;
   padding: .3rem;
   border-radius: 10px;
 }
+
 /* End styles for discount on detail page */
 
 /* Start cart list card styles */
@@ -257,9 +263,11 @@ div.cart #superscript {
     max-width: 1080px;
     margin: auto;
   }
+
   .mission {
     font-size: 1.2em;
   }
+
   .cart-card {
     font-size: inherit;
     grid-template-columns: 150px auto 15%;
@@ -269,4 +277,19 @@ div.cart #superscript {
 footer {
   font-size: var(--small-font);
   padding: 1em;
+}
+
+/*Style for Alerts*/
+.alert-list {
+  text-align: center;
+  max-width: 80vw;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+.alert-list p {
+  padding: 1rem;
+  border-radius: 15px;
+  border: 1px solid rgba(0, 0, 0, 0);
+  margin: 1px 0;
 }

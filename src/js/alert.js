@@ -1,11 +1,11 @@
-class Alert {
+export default class Alert {
     constructor() {
         this.alerts = [];
     }
 
     async loadAlerts() {
         try {
-            const response = await fetch('./alerts.json');
+            const response = await fetch('/json/alerts.json');
             if (!response.ok) {
                 console.error('Failed to load alerts');
             }
@@ -36,8 +36,6 @@ class Alert {
         }
     }
 }
-
-export default Alert;
 
 document.addEventListener('DOMContentLoaded', async () => {
     const alertHandler = new Alert();

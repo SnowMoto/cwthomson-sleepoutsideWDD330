@@ -10,7 +10,6 @@ export default class ProductDetails {
     async init() {
         // Use our datasource to get the details for the current product. findProductById will return a promise! use await or .then() to process it
         this.product = await this.dataSource.findProductById(this.productId);
-        console.log(this.product);
 
         // once we have the product details we can render out the HTML
         // once the HTML is rendered we can add a listener to Add to Cart button
@@ -24,14 +23,14 @@ export default class ProductDetails {
             .addEventListener('click', this.addToCart.bind(this));
     }
 
-    addToCart () {
+    addToCart() {
         let cartItems = [];
         const cart = getLocalStorage("so-cart");
         if (cart !== null) {
             cart.forEach((object) => cartItems.push(object));
         }
         // Push the "product" property of the instance of the class
-        cartItems.push(this.product); 
+        cartItems.push(this.product);
         setLocalStorage("so-cart", cartItems);
         updateCartSuperscript();
     }
@@ -54,4 +53,4 @@ export default class ProductDetails {
                             </div>`
         main.appendChild(section);
     }
-  }
+}
