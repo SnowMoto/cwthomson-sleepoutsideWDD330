@@ -15,10 +15,15 @@ function renderCartContents() {
         });
 
       const total = calculateTotal(cartItems);
-      document.querySelector(".cart_total").innerText = `Total: $${total.toFixed(2)}`;
+      document.querySelector(".cart_total").innerHTML = `<b>Total:</b> $${total.toFixed(2)}`;
+
+      // Remove "hide" class from footer to display html
+      document.querySelector(".cart-footer").classList.remove("hide");
     } else {
       // If cart is empty, display a message
       document.querySelector(".product-list").innerHTML = "<p>Your cart is empty.</p>";
+      // Add "hide" class from footer to hide html
+      document.querySelector(".cart-footer").classList.add("hide");
     }
 }
 

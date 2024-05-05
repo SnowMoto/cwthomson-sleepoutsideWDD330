@@ -308,10 +308,12 @@ footer {
 }
 
 /* style for the total footer */
-.hide {
-  display: block;
+.cart-footer.hide {
+  display: none;
 }
 
 .cart-footer {
-  text-align: center;
+  text-align: right;
+  margin-right: 1rem;
+  display: block;
 }
