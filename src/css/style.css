@@ -293,3 +293,12 @@ footer {
   border: 1px solid rgba(0, 0, 0, 0);
   margin: 1px 0;
 }
+
+/* style for the total footer */
+.hide {
+  display: block;
+}
+
+.cart-footer {
+  text-align: center;
+}
