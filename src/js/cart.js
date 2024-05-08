@@ -47,7 +47,7 @@ function cartItemTemplate(item) {
 }
 
 function calculateTotal(cartItems) {
-  return cartItems.reduce((total, items) => total + items.FinalPrice,0);
+  return cartItems.reduce((total, items) => total + (items.FinalPrice * items.qty), 0);
 }
 
 function removeFromCart(id) {
