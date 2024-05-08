@@ -29,10 +29,30 @@ export default class ProductDetails {
         if (cart !== null) {
             cart.forEach((object) => cartItems.push(object));
         }
+        // Check if product is already in cartItems before adding
+        // Use JSON for comparing strings
+        // let cartItemsValues = cartItems.values()
+        // let productJSON = JSON.stringify(this.product);
+
         // Push the "product" property of the instance of the class
-        cartItems.push(this.product);
+        if (!this.isProductInCart(cartItems, this.product)) {
+            this.product["qty"] = 1;
+            cartItems.push(this.product);
+        } else {
+            // Get product from cartItems
+            let product = cartItems[cartItems.findIndex(item => item.Id === this.product.Id)];
+
+            // Update quantity
+            let qty = product["qty"];
+            product["qty"] = qty + 1;
+        }
         setLocalStorage("so-cart", cartItems);
         updateCartSuperscript();
+    }
+
+    isProductInCart(cartList, product) {
+        const index = cartList.findIndex((item) => item.Id === product.Id);       
+        return (index === -1) ? false : true;
     }
 
     renderProductDetails() {

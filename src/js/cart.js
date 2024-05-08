@@ -1,11 +1,30 @@
 import { getLocalStorage, setLocalStorage, updateCartSuperscript } from "./utils.mjs";
 
 function renderCartContents() {
-  const cartItems = getLocalStorage("so-cart");
+  let cartItems = getLocalStorage("so-cart");
 
   if (cartItems && cartItems.length > 0) {
       const htmlItems = cartItems.map((item) => cartItemTemplate(item));
       document.querySelector(".product-list").innerHTML = htmlItems.join("");
+
+      // Update qty everytime input is updated
+      document
+        .querySelectorAll(".qtyInput")
+        .forEach(input => {
+          input.addEventListener("change", (ev) => {
+            const productId = ev.target.dataset.id;
+            const qty = (ev.target.value) ? parseInt(ev.target.value) : 0;
+            const product = cartItems[cartItems.findIndex(item => item.Id === productId)]
+            product["qty"] = qty;
+
+            if (product["qty"] === 0)
+              cartItems = cartItems.filter(item => item.Id !== productId);
+
+            setLocalStorage("so-cart", cartItems);
+            updateCartSuperscript();
+            renderCartContents();
+          })
+        });
 
       // Add event listener to all "remove" span elements 
       document
@@ -39,29 +58,23 @@ function cartItemTemplate(item) {
     <h2 class="card__name">${item.Name}</h2>
   </a>
   <p class="cart-card__color">${item.Colors[0].ColorName}</p>
-  <p class="cart-card__quantity">qty: 1</p>
+  <p class="cart-card__quantity">qty: <input class="qtyInput" type="number" value="${item.qty}" min=0 data-id="${item.Id}"></p>
   <p class="cart-card__price">$${item.FinalPrice}</p>
-  <span data-id="${item.Id}" class="cart-card__remove">🗙</span>
-</li>`;
+  <span data-id="${item.Id}" class="cart-card__remove">x</span>
+  </li>`;
   return newItem;
 }
 
 function calculateTotal(cartItems) {
-  return cartItems.reduce((total, items) => total + items.FinalPrice,0);
+  return cartItems.reduce((total, items) => total + (items.FinalPrice * items.qty), 0);
 }
 
 function removeFromCart(id) {
   // Retrieve current cart items from local storage
   let cartItems = getLocalStorage("so-cart");
 
-  // Find specified product to remove
-  const product = cartItems.filter(item => item.Id === id);
-  // Get only the product object from the array (or the first one, in case there's more than one)
-  const itemToRemove = product[0]; 
-
-  // Delete replaces the property for null, filter the array removing it
-  delete cartItems[cartItems.indexOf(itemToRemove)];
-  cartItems = cartItems.filter(item => item !== null);
+  // Filter id to be removed
+  cartItems = cartItems.filter(item => item.Id !== id);
 
   // Set updated cart items list in local storage
   setLocalStorage("so-cart", cartItems);
