@@ -1,11 +1,30 @@
 import { getLocalStorage, setLocalStorage, updateCartSuperscript } from "./utils.mjs";
 
 function renderCartContents() {
-  const cartItems = getLocalStorage("so-cart");
+  let cartItems = getLocalStorage("so-cart");
 
   if (cartItems && cartItems.length > 0) {
       const htmlItems = cartItems.map((item) => cartItemTemplate(item));
       document.querySelector(".product-list").innerHTML = htmlItems.join("");
+
+      // Update qty everytime input is updated
+      document
+        .querySelectorAll(".qtyInput")
+        .forEach(input => {
+          input.addEventListener("change", (ev) => {
+            const productId = ev.target.dataset.id;
+            const qty = (ev.target.value) ? parseInt(ev.target.value) : 0;
+            const product = cartItems[cartItems.findIndex(item => item.Id === productId)]
+            product["qty"] = qty;
+
+            if (product["qty"] === 0)
+              cartItems = cartItems.filter(item => item.Id !== productId);
+
+            setLocalStorage("so-cart", cartItems);
+            updateCartSuperscript();
+            renderCartContents();
+          })
+        });
 
       // Add event listener to all "remove" span elements 
       document
@@ -39,10 +58,10 @@ function cartItemTemplate(item) {
     <h2 class="card__name">${item.Name}</h2>
   </a>
   <p class="cart-card__color">${item.Colors[0].ColorName}</p>
-  <p class="cart-card__quantity">qty: <input type="number" value="${item.qty}" min=0 data-id="${item.Id}"></p>
+  <p class="cart-card__quantity">qty: <input class="qtyInput" type="number" value="${item.qty}" min=0 data-id="${item.Id}"></p>
   <p class="cart-card__price">$${item.FinalPrice}</p>
   <span data-id="${item.Id}" class="cart-card__remove">x</span>
-</li>`;
+  </li>`;
   return newItem;
 }
 
