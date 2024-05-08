@@ -35,18 +35,24 @@ export function getParams(params) {
 export function updateCartSuperscript() {
   // Select cart backpack icon element
   const backPackIcon = document.querySelector("div.cart");
-  const span = document.createElement("span");
-  span.setAttribute("id", "superscript");
-  
   const cart = getLocalStorage("so-cart");
-  
+  let cartQty;
   if (cart) {
-      span.textContent = cart.length;
+    cartQty = cart.reduce((sum, item) => sum + item.qty, 0);
   } else {
-      span.textContent = 0;
+    cartQty = 0;
   }
 
-  backPackIcon.appendChild(span);
+  let span;
+  if (document.querySelector("#superscript")) {
+    span = document.querySelector("#superscript");
+    span.textContent = cartQty;
+  } else {
+    span = document.createElement("span");
+    span.setAttribute("id", "superscript");
+    span.textContent = cartQty;
+    backPackIcon.appendChild(span);
+  }
 }
 
 // Get discount information details
