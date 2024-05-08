@@ -39,9 +39,9 @@ function cartItemTemplate(item) {
     <h2 class="card__name">${item.Name}</h2>
   </a>
   <p class="cart-card__color">${item.Colors[0].ColorName}</p>
-  <p class="cart-card__quantity">qty: ${item.qty}</p>
+  <p class="cart-card__quantity">qty: <input type="number" value="${item.qty}" min=0 data-id="${item.Id}"></p>
   <p class="cart-card__price">$${item.FinalPrice}</p>
-  <span data-id="${item.Id}" class="cart-card__remove">🗙</span>
+  <span data-id="${item.Id}" class="cart-card__remove">x</span>
 </li>`;
   return newItem;
 }
