@@ -52,6 +52,7 @@ export function updateCartSuperscript() {
     span.setAttribute("id", "superscript");
     span.textContent = cartQty;
     backPackIcon.appendChild(span);
+
   }
 }
 
@@ -89,3 +90,30 @@ export function renderListWithTemplate(templateFn, parentElement, list, position
   parentElement.insertAdjacentHTML(position, htmlStrings.join(""));
 }
 
+// Create a html template for the footer and header with the same function renamed
+export function renderWithTemplate(templateFn, parentElement, callback, position = "afterbegin") {
+  
+  parentElement.insertAdjacentHTML(position, templateFn);
+
+  if(callback) {
+    callback();
+  }
+}
+
+//Load header and footer from the loadTemplate
+async function loadTemplate(path) {
+  const res = await fetch(path);
+  const template = await res.text();
+  return template;
+}
+
+// function to dynamically load the header and footer into a page
+export async function loadHeaderFooter() {
+  const headerTemplate = await loadTemplate("../partials/header.html");
+  const headerElement = document.querySelector("#main-header");
+  const footerTemplate = await loadTemplate("../partials/footer.html");
+  const footerElement = document.querySelector("#main-footer");
+
+  renderWithTemplate(headerTemplate, headerElement, updateCartSuperscript);
+  renderWithTemplate(footerTemplate, footerElement, updateCartSuperscript);
+}

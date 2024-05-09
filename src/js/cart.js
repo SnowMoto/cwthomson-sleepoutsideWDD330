@@ -1,4 +1,4 @@
-import { getLocalStorage, setLocalStorage, updateCartSuperscript } from "./utils.mjs";
+import { getLocalStorage, setLocalStorage, updateCartSuperscript, loadHeaderFooter} from "./utils.mjs";
 
 function renderCartContents() {
   let cartItems = getLocalStorage("so-cart");
@@ -87,3 +87,4 @@ function removeEventHandler(e) {
 }
 
 renderCartContents();
+loadHeaderFooter();
