@@ -204,6 +204,23 @@ div.cart #superscript {
   width: 100%;
 }
 
+/* Styles for products icons on homepage */
+.product-icons {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  text-align: center;
+  font-size: 2rem;
+}
+
+.product-icons a {
+  text-decoration: none;
+  color: black;
+  font-weight: 700;
+}
+
+
 /* Styles for product discount on product detail page */
 .product-card__price span {
   display: block;

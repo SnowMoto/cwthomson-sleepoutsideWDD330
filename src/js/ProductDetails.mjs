@@ -29,10 +29,6 @@ export default class ProductDetails {
         if (cart !== null) {
             cart.forEach((object) => cartItems.push(object));
         }
-        // Check if product is already in cartItems before adding
-        // Use JSON for comparing strings
-        // let cartItemsValues = cartItems.values()
-        // let productJSON = JSON.stringify(this.product);
 
         // Push the "product" property of the instance of the class
         if (!this.isProductInCart(cartItems, this.product)) {
@@ -62,7 +58,7 @@ export default class ProductDetails {
         section.setAttribute("class", "product-detail");
         section.innerHTML = `<h3>${this.product.Brand.Name}</h3>
                             <h2 class="divider">${this.product.NameWithoutBrand}</h2>
-                            <img class="divider" src="${this.product.Image}"
+                            <img class="divider" src="${this.product.Images.PrimaryLarge}"
                             alt="${this.product.NameWithoutBrand}"
                             />
                             <p class="product-card__price">$${this.product.ListPrice}</p>
