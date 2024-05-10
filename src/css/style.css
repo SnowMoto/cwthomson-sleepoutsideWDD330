@@ -206,18 +206,19 @@ div.cart #superscript {
 
 /* Styles for products icons on homepage */
 .product-icons {
-  width: 100%;
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 1rem;
   text-align: center;
-  font-size: 2rem;
+}
+
+.product-icons figure {
+  width: 50vw;
+  margin: 1rem auto;
 }
 
 .product-icons a {
   text-decoration: none;
   color: black;
   font-weight: 700;
+  font-size: 1.5rem;
 }
 
 
@@ -310,6 +311,21 @@ div.cart #superscript {
   .cart-card {
     font-size: inherit;
     grid-template-columns: 150px auto 15%;
+  }
+
+  /* Styles for products icons on homepage in larger views */
+  section.product-icons {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    gap: 1rem;
+  }
+
+  .product-icons img {
+    height: 200px;
+  }
+
+  .product-icons figure {
+    width: 100%;
   }
 }
 
