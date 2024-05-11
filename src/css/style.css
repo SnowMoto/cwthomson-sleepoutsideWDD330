@@ -204,6 +204,24 @@ div.cart #superscript {
   width: 100%;
 }
 
+/* Styles for products icons on homepage */
+.product-icons {
+  text-align: center;
+}
+
+.product-icons figure {
+  width: 50vw;
+  margin: 1rem auto;
+}
+
+.product-icons a {
+  text-decoration: none;
+  color: black;
+  font-weight: 700;
+  font-size: 1.5rem;
+}
+
+
 /* Styles for product discount on product detail page */
 .product-card__price span {
   display: block;
@@ -293,6 +311,21 @@ div.cart #superscript {
   .cart-card {
     font-size: inherit;
     grid-template-columns: 150px auto 15%;
+  }
+
+  /* Styles for products icons on homepage in larger views */
+  section.product-icons {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    gap: 1rem;
+  }
+
+  .product-icons img {
+    height: 200px;
+  }
+
+  .product-icons figure {
+    width: 100%;
   }
 }
 
