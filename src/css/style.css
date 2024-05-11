@@ -317,3 +317,25 @@ footer {
   margin-right: 1rem;
   display: block;
 }
+
+/* SEARCH BAR */
+
+.navbar-form {
+  display: flex;
+  align-items: center;
+}
+
+.form-group {
+  margin-right: 10px;
+}
+.form-control {
+  width: 250px;
+}
+
+#searchInput {
+  width: 200px;
+}
+button {
+  padding: 8px 12px;
+  font-size: 14px;
+}

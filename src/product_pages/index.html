@@ -14,8 +14,16 @@
 <body>
   <header class="divider">
     <div class="logo">
-      <img src="/images/noun_Tent_2517.svg" alt="tent image for logo" />
+      <img src="../public/images/noun_Tent_2517.svg" alt="tent image for logo" />
       <a href="../index.html"> Sleep<span class="highlight">Outside</span></a>
+    </div>
+    <div class="navbar-right">
+      <form id="searchForm" class="navbar-form" role="search">
+        <div class="form-group">
+          <input type="text" id="searchInput" class="form-control" placeholder="Search for products">
+        </div>
+        <button type="submit" class="btn btn-default">Search</button>
+      </form>
     </div>
     <div class="cart">
       <a href="../cart/index.html">
@@ -37,9 +45,17 @@
         </svg>
       </a>
     </div>
+    <!-- <form id="searchForm" class="navbar-form" role="search">
+      <div class="form-group">
+        <input type="text" id="searchInput" class="form-control" placeholder="Search for products">
+      </div>
+      <button type="submit" class="btn btn-default">Search</button>
+    </form> -->
+    
   </header>
   <main class="divider"></main>
-  <script src="/js/alert.js" type="module"></script>
+  <script src="../js/alert.js" type="module"></script>
+  <script src="../js/searchBox.js" type="module"></script>
   <footer>&copy;NOT a real business</footer>
 </body>
 

@@ -9,15 +9,15 @@ function convertToJson(res) {
 export default class ProductData {
   constructor(category) {
     this.category = category;
-    this.path = `../json/${this.category}.json`;
+    this.path = `../public/json/${this.category}.json`;
   }
   getData() {
     return fetch(this.path)
       .then(convertToJson)
       .then((data) => data);
   }
-  async findProductById(id) {
+  async searchProducts(query) {
     const products = await this.getData();
-    return products.find((item) => item.Id === id);
+    return products.filter(product => product.Name.toLowerCase().includes(query.toLowerCase()));
   }
 }
