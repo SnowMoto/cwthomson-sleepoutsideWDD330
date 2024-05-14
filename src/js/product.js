@@ -13,16 +13,19 @@ product.init();
 
 
 const oldBreadcrumbsPath = getLocalStorage("breadcrumbsPath");
+const breadBackup = getLocalStorage("breadBackup");
 function bread() {
     if (oldBreadcrumbsPath && oldBreadcrumbsPath.includes(productId)) {
-        const breadcrumbsPath = oldBreadcrumbsPath;
+        const breadcrumbsPath = breadBackup;
         document.querySelector(".breadcrumb").innerHTML = breadcrumbsPath;
-        setLocalStorage("breadcrumbsPath", breadcrumbsPath);
+        setLocalStorage("breadcrumbsPath", breadBackup);
+        setLocalStorage("breadBackup", breadBackup);
     }
     else {
         const breadcrumbsPath = `${oldBreadcrumbsPath} / <li><a href="${window.location.href}">${productId}</a></li>`;
         document.querySelector(".breadcrumb").innerHTML = breadcrumbsPath;
         setLocalStorage("breadcrumbsPath", breadcrumbsPath);
+        setLocalStorage("breadBackup", breadcrumbsPath);
     }
 }
 bread();

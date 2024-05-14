@@ -374,16 +374,19 @@ ul.breadcrumb li {
 }
 
 ul.breadcrumb li+li:before {
-  padding: 8px;
+  padding: 10px;
   color: black;
 }
 
-ul.breadcrumb li a {
-  color: #0275d8;
+ul.breadcrumb li a,
+.aElement {
+  color: #0c5494;
   text-decoration: none;
+  font-weight: 500;
 }
 
-ul.breadcrumb li a:hover {
+ul.breadcrumb li a:hover,
+.aElement:hover {
   color: #01447e;
   text-decoration: underline;
 }
