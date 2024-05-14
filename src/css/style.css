@@ -9,7 +9,7 @@
   --dark-grey: #303030;
 
   --blue: #033bad;
-  --gray: #776b6b;
+  --gray: #54006F;
   --black: #000607;
 
 
@@ -409,6 +409,7 @@ footer {
       a {
         color: white;
         margin-left: 5px;
+        text-shadow: 0 0 5px white, 0 0 10px white, 0 0 15px black;
       }
     }
 
@@ -432,7 +433,7 @@ footer {
     a {
       font-weight: 100;
       text-decoration: none;
-      color: var(--bacl);
+      color: white;
       padding: 0 15px;
       margin-top: 5px;
     }
@@ -440,6 +441,7 @@ footer {
     a:hover {
       text-decoration: underline;
       color: rgba(255, 255, 255, 0.774);
+      text-shadow: 0 0 5px white, 0 0 10px white, 0 0 15px black;
     }
   }
 }
