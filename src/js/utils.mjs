@@ -119,3 +119,24 @@ export async function loadHeaderFooter() {
   renderWithTemplate(headerTemp, headerElem, updateCartSuperscript);
   renderWithTemplate(footerTemp, footerElem, updateCartSuperscript);
 }
+
+document.addEventListener("DOMContentLoaded", function() {
+// Check if the user has clicked the link before
+if (!localStorage.getItem("clickedLink")) {
+  // If not, allow the user to click the link
+  document.getElementById("registerLink").addEventListener("click", function(event) {
+      localStorage.setItem("clickedLink", true);
+  });
+} else {
+  // If the user has clicked the link before, show a message
+  document.getElementById("registerLink").addEventListener("click", function(event) {
+      event.preventDefault(); // Prevent the default action of clicking the link
+      alert("You have already registered!");
+  });
+}
+
+// Close the popup
+document.getElementById("close").addEventListener("click", function() {
+  document.getElementById("banner").style.display = "none";
+});
+});
