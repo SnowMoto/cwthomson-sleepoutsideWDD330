@@ -15,8 +15,8 @@ listing.init();
 //Breadcrumbs
 
 async function getbreadcrumbs() {
-    //let items = await listing.getNumberItems();
-    const breadcrumbTemplate = `<li><a href="/">Home / </a></li><a href="${window.location.href}"> ${listing.category.charAt(0).toUpperCase() + listing.category.slice(1)}</a></li>`;
+    let items = await listing.getNumberItems();
+    const breadcrumbTemplate = `<li><a href="/">Home / </a></li><a href="${window.location.href}"> ${listing.category.charAt(0).toUpperCase() + listing.category.slice(1)}(Items:${items})</a></li>`;
     document.querySelector(".breadcrumb").innerHTML = breadcrumbTemplate;
     setLocalStorage("breadcrumbsPath", breadcrumbTemplate);
 }
