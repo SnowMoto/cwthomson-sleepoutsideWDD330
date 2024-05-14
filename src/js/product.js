@@ -22,7 +22,7 @@ function bread() {
         setLocalStorage("breadBackup", breadBackup);
     }
     else {
-        const breadcrumbsPath = `${oldBreadcrumbsPath} / <li><a href="${window.location.href}">${productId}</a></li>`;
+        const breadcrumbsPath = `${oldBreadcrumbsPath}<li><a href="${window.location.href}">${productId}</a></li><i class="fa fa-home"></i>`;
         document.querySelector(".breadcrumb").innerHTML = breadcrumbsPath;
         setLocalStorage("breadcrumbsPath", breadcrumbsPath);
         setLocalStorage("breadBackup", breadcrumbsPath);

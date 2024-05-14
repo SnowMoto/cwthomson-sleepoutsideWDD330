@@ -8,6 +8,11 @@
   --light-grey: #d0d0d0;
   --dark-grey: #303030;
 
+  --blue: #033bad;
+  --gray: #776b6b;
+  --black: #000607;
+
+
   /* sizes */
   --font-base: 18px;
   --small-font: 0.8em;
@@ -362,31 +367,79 @@ footer {
 
 
 /*Breadcrumbs! (so yummy)*/
-ul.breadcrumb {
-  padding: 10px 16px;
-  list-style: none;
-  background-color: #eee;
-}
 
-ul.breadcrumb li {
-  display: inline;
-  font-size: 18px;
-}
+.breadcrumb {
+  background-color: var(--white-bg);
+  box-shadow: 0 0 4px 1px rgba(200, 200, 200, 0.2);
+  width: max-content;
+  position: relative;
+  left: -30px;
 
-ul.breadcrumb li+li:before {
-  padding: 10px;
-  color: black;
-}
 
-ul.breadcrumb li a,
-.aElement {
-  color: #0c5494;
-  text-decoration: none;
-  font-weight: 500;
-}
+  i.fa-angle-right {
+    color: var(--black);
+    font-weight: 200;
+    line-height: 40px;
+    margin-left: -5px;
+    margin-right: -1px;
+    background-color: var(--gray);
 
-ul.breadcrumb li a:hover,
-.aElement:hover {
-  color: #01447e;
-  text-decoration: underline;
+    &:last-of-type,
+    &:nth-last-of-type(2) {
+      display: none;
+    }
+  }
+
+  li {
+    display: inline-block;
+    background-color: var(--gray);
+    margin-left: -10px;
+    padding: 10px 0;
+    height: 41px;
+
+    &:first-child,
+    &:only-child {
+      border-top-left-radius: 3px;
+      border-bottom-left-radius: 3px;
+    }
+
+    &:last-of-type:not(:only-child) {
+      background-color: var(--black);
+
+      a {
+        color: white;
+        margin-left: 5px;
+      }
+    }
+
+    &:last-of-type:not(:only-child)::after,
+    &:last-of-type:not(:only-child)::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      border: 20px solid transparent;
+    }
+
+    &:last-of-type:not(:only-child)::after {
+      border-left: 15px solid var(--black);
+    }
+
+    &:last-of-type:not(:only-child)::before {
+      border-left: 15px solid var(--gray);
+    }
+
+
+    a {
+      font-weight: 100;
+      text-decoration: none;
+      color: var(--bacl);
+      padding: 0 15px;
+      margin-top: 5px;
+    }
+
+    a:hover {
+      text-decoration: underline;
+      color: rgba(255, 255, 255, 0.774);
+    }
+  }
 }
