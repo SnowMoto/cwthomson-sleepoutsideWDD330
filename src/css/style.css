@@ -366,14 +366,22 @@ footer {
 }
 
 
-/*Breadcrumbs! (so yummy)*/
-
+/* Breadcrumbs! */
 .breadcrumb {
   background-color: var(--white-bg);
   box-shadow: 0 0 4px 1px rgba(200, 200, 200, 0.2);
   width: max-content;
   position: relative;
   left: -30px;
+
+  .products-number {
+    background-color: white;
+    color: black;
+    font-weight: 700;
+    padding: .35rem .4rem .3rem .3rem;
+    border-radius: 20px;
+    font-size: var(--small-font);
+  }
 
 
   i.fa-angle-right {
@@ -392,7 +400,7 @@ footer {
 
   li {
     display: inline-block;
-    background-color: var(--gray);
+    background-color: var(--black);
     margin-left: -10px;
     padding: 10px 0;
     height: 41px;
@@ -404,12 +412,11 @@ footer {
     }
 
     &:last-of-type:not(:only-child) {
-      background-color: var(--black);
+      background-color: var(--primary-color);
 
       a {
-        color: white;
+        color: black;
         margin-left: 5px;
-        text-shadow: 0 0 5px white, 0 0 10px white, 0 0 15px black;
       }
     }
 
@@ -422,16 +429,15 @@ footer {
     }
 
     &:last-of-type:not(:only-child)::after {
-      border-left: 15px solid var(--black);
+      border-left: 15px solid var(--primary-color);
     }
 
     &:last-of-type:not(:only-child)::before {
-      border-left: 15px solid var(--gray);
+      border-left: 15px solid var(--black);
     }
 
-
     a {
-      font-weight: 100;
+      font-weight: 700;
       text-decoration: none;
       color: white;
       padding: 0 15px;
@@ -439,9 +445,7 @@ footer {
     }
 
     a:hover {
-      text-decoration: underline;
-      color: rgba(255, 255, 255, 0.774);
-      text-shadow: 0 0 5px white, 0 0 10px white, 0 0 15px black;
+      text-shadow: 0 0 1px white, 0 0 1px white, 0 0 10px whitesmoke;
     }
   }
 }
