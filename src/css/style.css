@@ -27,7 +27,6 @@ body {
 
 /*-----Popup banner-----*/
 .popup {
-  display: none;
   display: flex;
   flex-direction: row;
   font-size: 10px;

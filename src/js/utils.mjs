@@ -122,7 +122,6 @@ export async function loadHeaderFooter() {
 
 document.addEventListener("DOMContentLoaded", function() {
   let banner = document.getElementById("banner");
-  let close = document.getElementById("close");
 
   // Check if it's the first visit and show the popup
   if (!localStorage.getItem("visited")) {
@@ -131,7 +130,5 @@ document.addEventListener("DOMContentLoaded", function() {
   }else{
     return banner.style.display = "none";
   }
-  // Close button functionality
-  close.addEventListener("click");
 });
 
