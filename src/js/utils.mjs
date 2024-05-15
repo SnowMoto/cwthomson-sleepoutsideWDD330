@@ -121,22 +121,17 @@ export async function loadHeaderFooter() {
 }
 
 document.addEventListener("DOMContentLoaded", function() {
-// Check if the user has clicked the link before
-if (!localStorage.getItem("clickedLink")) {
-  // If not, allow the user to click the link
-  document.getElementById("registerLink").addEventListener("click", function(event) {
-      localStorage.setItem("clickedLink", true);
-  });
-} else {
-  // If the user has clicked the link before, show a message
-  document.getElementById("registerLink").addEventListener("click", function(event) {
-      event.preventDefault(); // Prevent the default action of clicking the link
-      alert("You have already registered!");
-  });
-}
+  let banner = document.getElementById("banner");
+  let close = document.getElementById("close");
 
-// Close the popup
-document.getElementById("close").addEventListener("click", function() {
-  document.getElementById("banner").style.display = "none";
+  // Check if it's the first visit and show the popup
+  if (!localStorage.getItem("visited")) {
+    banner.style.display = "block";
+    localStorage.setItem("visited", true);
+  }else{
+    return banner.style.display = "none";
+  }
+  // Close button functionality
+  close.addEventListener("click");
 });
-});
+
