@@ -56,13 +56,19 @@ export function updateCartSuperscript() {
 }
 
 // Get discount information details
-export async function addDiscountDetails(product) {
+export function addDiscountDetails(product) {
 
   // Select product card price for adding suggested retail price and discount
   const p = document.querySelector(".product-card__price");
   const span = document.createElement("span");
 
-  // Get prices
+  // Update .product-card_price with discount details
+  // if RRP bigger than final price
+      span.innerHTML = calculateDiscount(product);
+      p.append(span);
+}
+
+export function calculateDiscount(product){
   const suggestedRetailPrice = product.SuggestedRetailPrice;
   const finalPrice = product.FinalPrice;
 
@@ -73,8 +79,9 @@ export async function addDiscountDetails(product) {
       let discountPercent = ((100 * finalPrice) / suggestedRetailPrice) - 100;
       discountPercent = Math.round(100 * discountPercent) / 100;
 
-      span.innerHTML = ` <b>${discountPercent}%</b> RRP: <s>$${suggestedRetailPrice}</s>`;
-      p.append(span);
+      return ` <b>${discountPercent}%</b> RRP: <s>$${suggestedRetailPrice}</s>`;
+  } else {
+    return "";
   }
 }
 
@@ -89,7 +96,7 @@ export function renderListWithTemplate(templateFn, parentElement, list, position
   parentElement.insertAdjacentHTML(position, htmlStrings.join(""));
 }
 
-export function renderWithTemplate(template, parentElement, callback=null) {
+export function renderWithTemplate(template, parentElement, callback = null) {
   parentElement.insertAdjacentHTML("afterbegin", template);
   if (callback) {
     callback();
@@ -98,7 +105,7 @@ export function renderWithTemplate(template, parentElement, callback=null) {
 
 async function loadTemplate(path) {
   const html = await fetch(path);
-  const htmlString = await(html.text());
+  const htmlString = await (html.text());
   return htmlString;
 }
 
