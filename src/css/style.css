@@ -359,3 +359,34 @@ footer {
   margin-right: 21%;
   display: block;
 }
+
+/* NEWSLETTER */
+.newsletter-signup {
+  background-color: #f0f0f0;
+  width: 50%;
+  margin: 20px auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  position: relative;
+  text-align: center;
+}
+
+#emailInput {
+  width: 80%;
+  box-sizing: border-box;
+  margin-bottom: 10px;
+}
+.newsletter-signup button {
+  font-size: 14px;
+    padding: 8px 15px;
+}
+
+#closeNewsletter {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  font-size: 20px;
+  text-decoration: none;
+  color: #666;
+}

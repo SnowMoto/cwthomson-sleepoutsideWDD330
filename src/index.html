@@ -11,14 +11,23 @@
     <main class="divider">
       <div class="hero">
         <img
-          src="./images/banner-sm.jpg"
-          srcset="./images/banner-sm.jpg 500w, images/banner.jpg"
+          src="./public/images/banner-sm.jpg"
+          srcset="./images/banner-sm.jpg 500w, public/images/banner.jpg"
           alt="image of a high mountain lake"
         />
         <div class="logo logo--square">
-          <img src="./images/noun_Tent_2517.svg" alt="tent image for logo" />
+          <img src="./public/images/noun_Tent_2517.svg" alt="tent image for logo" />
           <div>Sleep<span class="highlight">Outside</span></div>
         </div>
+      </div>
+      <div id="newsletterFormContainer" class="newsletter-signup">
+        <h2>Sign up for our Newsletter!</h2>
+        <p>Stay in the loop! Sign up for our Newsletter to be the first to know about exciting new releases, exclusive discounts, and insider information.</p>
+        <form id="newsletterForm" action="/submit-newsletter" method="POST">
+            <input type="email" id="emailInput" name="email" placeholder="Enter your email address" required>
+            <button type="submit">Sign Up</button>
+            <a id="closeNewsletter" href="#">X</a>
+        </form>
       </div>
       <section class="mission">
         <p>We spend too much time these days indoors...sitting usually.</p>
@@ -58,5 +67,6 @@
     </main>
     <footer id="footer"></footer>
     <script src="js/main.js" type="module"></script>
+    <script src="js/newsletter.js"></script>
   </body>
 </html>
