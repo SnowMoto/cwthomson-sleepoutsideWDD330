@@ -29,10 +29,26 @@ export default class ProductDetails {
         if (cart !== null) {
             cart.forEach((object) => cartItems.push(object));
         }
+
         // Push the "product" property of the instance of the class
-        cartItems.push(this.product);
+        if (!this.isProductInCart(cartItems, this.product)) {
+            this.product["qty"] = 1;
+            cartItems.push(this.product);
+        } else {
+            // Get product from cartItems
+            let product = cartItems[cartItems.findIndex(item => item.Id === this.product.Id)];
+
+            // Update quantity
+            let qty = product["qty"];
+            product["qty"] = qty + 1;
+        }
         setLocalStorage("so-cart", cartItems);
         updateCartSuperscript();
+    }
+
+    isProductInCart(cartList, product) {
+        const index = cartList.findIndex((item) => item.Id === product.Id);       
+        return (index === -1) ? false : true;
     }
 
     renderProductDetails() {
@@ -42,7 +58,7 @@ export default class ProductDetails {
         section.setAttribute("class", "product-detail");
         section.innerHTML = `<h3>${this.product.Brand.Name}</h3>
                             <h2 class="divider">${this.product.NameWithoutBrand}</h2>
-                            <img class="divider" src="${this.product.Image}"
+                            <img class="divider" src="${this.product.Images.PrimaryLarge}"
                             alt="${this.product.NameWithoutBrand}"
                             />
                             <p class="product-card__price">$${this.product.ListPrice}</p>

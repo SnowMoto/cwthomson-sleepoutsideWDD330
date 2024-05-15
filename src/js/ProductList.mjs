@@ -2,8 +2,8 @@ import { renderListWithTemplate } from "./utils.mjs";
 
 function productCardTemplate(product) {
     return `<li class="product-card">
-                <a href="product_pages/?product=${product.Id}">
-                    <img src="${product.Image}" alt="${product.Name}"/>
+                <a href="/product_pages/?product=${product.Id}">
+                    <img src="${product.Images.PrimaryMedium}" alt="${product.Name}"/>
                     <h3 class="card__brand">${product.Brand.Name}</h3>
                     <h2 class="card__name">${product.NameWithoutBrand}</h2>
                     <p class="product-card__price">$${product.ListPrice}</p>
@@ -19,12 +19,12 @@ export default class ProductListing {
     }
 
     async init() {
-        let productsList = await this.dataSource.getData();
-        
-        // Filter list with only the needed products
-        productsList = productsList.filter(product => ["880RR", "985RF", "985PR", "344YJ"].includes(product.Id))
+        let productsList = await this.dataSource.getData(this.category);
 
         this.renderList(productsList);
+
+        // Update title to have the current category (Capitalized)
+        document.querySelector("span.category").innerHTML = `: ${this.category.charAt(0).toUpperCase() + this.category.slice(1)}`;
     }
 
     renderList(productsList) {

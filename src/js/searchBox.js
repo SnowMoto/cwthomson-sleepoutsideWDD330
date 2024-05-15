@@ -28,9 +28,9 @@ function fetchSearchResults(query) {
 }
 
 function displaySearchResults(results) {
-    console.log("Displaying search results:", results);
+
 }
 
 function displayNoResultsMessage() {
-    console.log("No search results found.");
+
 }

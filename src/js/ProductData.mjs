@@ -1,3 +1,5 @@
+const baseURL = import.meta.env.VITE_SERVER_URL;
+
 function convertToJson(res) {
   if (res.ok) {
     return res.json();
@@ -7,17 +9,21 @@ function convertToJson(res) {
 }
 
 export default class ProductData {
-  constructor(category) {
-    this.category = category;
-    this.path = `../public/json/${this.category}.json`;
+  constructor() {
   }
-  getData() {
-    return fetch(this.path)
-      .then(convertToJson)
-      .then((data) => data);
+  async getData(category) {
+    const response = await fetch(baseURL + `products/search/${category}`);
+    const data = await convertToJson(response);
+    return data.Result;
+  }
+  async findProductById(id) {
+    const response = await fetch(`${baseURL}product/${id}`);
+    const data = await convertToJson(response);
+    return data.Result;
   }
   async searchProducts(query) {
-    const products = await this.getData();
-    return products.filter(product => product.Name.toLowerCase().includes(query.toLowerCase()));
+    const response = await fetch(baseURL + `products/search?q=${query}`);
+    const data = await convertToJson(response);
+    return data.results; // Assuming the search results are in an array called 'results'
   }
 }
