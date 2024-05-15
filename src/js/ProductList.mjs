@@ -30,4 +30,9 @@ export default class ProductListing {
     renderList(productsList) {
         renderListWithTemplate(productCardTemplate, this.listElement, productsList);
     }
+
+    async getNumberItems() {
+        const products = await this.dataSource.getData(this.category);
+        return products.length;
+    }
 }
