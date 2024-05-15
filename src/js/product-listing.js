@@ -1,6 +1,6 @@
 import ProductData from "./ProductData.mjs";
 import ProductListing from "./ProductList.mjs";
-import { loadHeaderFooter, getParams } from "./utils.mjs";
+import { loadHeaderFooter, getParams, setLocalStorage } from "./utils.mjs";
 
 loadHeaderFooter();
 
@@ -11,3 +11,13 @@ const listElement = document.querySelector(".product-list");
 
 const listing = new ProductListing(category, dataSource, listElement);
 listing.init();
+
+//Breadcrumbs
+
+async function getbreadcrumbs() {
+    let items = await listing.getNumberItems();
+    const breadcrumbTemplate = `<li><a href="/">Home</a></li><i class="fa fa-home"></i> <li><a href="${window.location.href}" class="aElement">${category.charAt(0).toUpperCase() + listing.category.slice(1)}(Items:${items})</a></li><i class="fa fa-home"></i>`;
+    document.querySelector(".breadcrumb").innerHTML = breadcrumbTemplate;
+    setLocalStorage("breadcrumbsPath", breadcrumbTemplate);
+}
+getbreadcrumbs();
