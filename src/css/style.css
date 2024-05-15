@@ -130,8 +130,20 @@ button {
 .cart:hover svg {
   fill: gray;
 }
-
 /* End cart icon styles */
+
+/* Style for animating cart icon when item added */
+.cart svg.animate {
+  animation: product-added 0.3s infinite;
+}
+
+@keyframes product-added {
+  0% { transform: translateY(0); }
+  25% { transform: translateY(-4px) rotate(7deg); }
+  50% { transform: translateY(0) rotate(0deg); }
+  75% { transform: translateY(-4px) rotate(-7deg); }
+}
+/* End cart animation style */
 
 /* Styles for superscript above cart backpack icon */
 div.cart #superscript {
