@@ -1,4 +1,4 @@
-import { setLocalStorage, getLocalStorage, updateCartSuperscript, addDiscountDetails } from "./utils.mjs";
+import { setLocalStorage, getLocalStorage, updateCartSuperscript, addDiscountDetails, animateCart } from "./utils.mjs";
 
 export default class ProductDetails {
     constructor(productId, dataSource) {
@@ -43,6 +43,7 @@ export default class ProductDetails {
             product["qty"] = qty + 1;
         }
         setLocalStorage("so-cart", cartItems);
+        animateCart();
         updateCartSuperscript();
     }
 
