@@ -344,6 +344,13 @@ div.cart #superscript {
   .product-icons figure {
     width: 100%;
   }
+
+  /* Styles for checkout page */
+  .checkout-grid-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
 }
 
 footer {
@@ -426,7 +433,7 @@ footer {
     &:last-of-type:not(:only-child) {
       background-color: var(--primary-color);
 
-      a {
+      & a {
         color: black;
         margin-left: 5px;
       }
@@ -448,7 +455,7 @@ footer {
       border-left: 15px solid var(--black);
     }
 
-    a {
+    & a {
       font-weight: 700;
       text-decoration: none;
       color: white;
@@ -456,8 +463,72 @@ footer {
       margin-top: 5px;
     }
 
-    a:hover {
+    & a:hover {
       text-shadow: 0 0 1px white, 0 0 1px white, 0 0 10px whitesmoke;
+    }
+  }
+}
+
+/* Styles for checkout form */
+form {
+  background-color: var(--black);
+  padding: 1rem;
+  border-radius: 15px;
+  margin-bottom: 1rem;
+
+  & input,
+  & label {
+    display: block;
+    width: 100%;
+  }
+
+  & fieldset {
+    margin-bottom: 1rem;
+    border: 5px solid white;
+  }
+
+  & input {
+    line-height: 1.5rem;
+    font-size: 1rem;
+    padding-left: 5px;
+    margin-bottom: 1rem;
+  }
+
+  & legend,
+  & label {
+    font-size: 1.2rem;
+    padding: 0 .5rem;
+    font-weight: 700;
+    color: white;
+  }
+
+  & legend {
+    font-size: 1.5rem;
+  }
+
+  & input[type="submit"] {
+    width: fit-content;
+    padding: 1rem;
+    font-size: 2rem;
+    font-weight: 700;
+    margin: 0 auto;
+    cursor: pointer;
+  }
+}
+
+/* Styles for order summary */
+#orderSummary {
+  padding: 0.5em;
+  
+  & div {
+    background-color: var(--primary-color);
+    padding: 1rem 2.5rem;
+    color: black;
+    border-radius: 15px;
+
+    & p {
+      font-size: 1.5rem;
+      margin: .9rem 0;
     }
   }
 }
