@@ -4,17 +4,17 @@ function cartItemTemplate(item) {
     return `<li class="cart-card divider">
                 <a href="/product_pages/?product=${item.Id}" class="cart-card__image">
                 <img
-                    src="${item.Images.PrimaryMedium}"
+                    src="${item.SelectColorImg}"
                     alt="${item.Name}"
                 />
                 </a>
                 <a href="/product_pages/?product=${item.Id}">
                     <h2 class="card__name">${item.Name}</h2>
                 </a>
-                <p class="cart-card__color">${item.Colors[0].ColorName}</p>
-                <p class="cart-card__quantity">qty: <input class="qtyInput" type="number" value="${item.qty}" min=0 data-id="${item.Id}"></p>
+                <p class="cart-card__color">${item.SelectedColor}</p>
+                <p class="cart-card__quantity">qty: <input class="qtyInput" type="number" value="${item.qty}" min=0 data-id="${item.Id}" data-color="${item.SelectedColor}"></p>
                 <p class="cart-card__price">$${item.FinalPrice}</p>
-                <span data-id="${item.Id}" class="cart-card__remove">x</span>
+                <span data-id="${item.Id}" data-color="${item.SelectedColor}" class="cart-card__remove">x</span>
             </li>`;
   }
 
@@ -61,12 +61,17 @@ export default class ShoppingCart {
         .forEach(input => {
             input.addEventListener("change", (ev) => {
                 const productId = ev.target.dataset.id;
+                const productColor = ev.target.dataset.color;
                 const qty = (ev.target.value) ? parseInt(ev.target.value) : 0;
-                const product = cartItems[cartItems.findIndex(item => item.Id === productId)]
+                const product = cartItems[cartItems.findIndex(item => (item.Id === productId) && (item.SelectedColor === productColor))]
                 product["qty"] = qty;
 
-                if (product["qty"] === 0)
-                cartItems = cartItems.filter(item => item.Id !== productId);
+                if (product["qty"] === 0) {
+                    const index = cartItems.findIndex(item => (item.SelectedColor === productColor) && (item.Id === productId));
+                    cartItems = cartItems.filter(item => item !== cartItems[index]);
+                    setLocalStorage(this.key, cartItems);
+                    this.updateCart();
+                }
 
                 setLocalStorage(this.key, cartItems);
                 this.updateCart();
@@ -82,12 +87,12 @@ export default class ShoppingCart {
                     // Retrieve current cart items from local storage
                     let cartItems = getLocalStorage(this.key);
                 
-                    // Filter id to be removed
-                    cartItems = cartItems.filter(item => item.Id !== ev.target.dataset.id);
+                    // Filter product index to be removed
+                    const index = cartItems.findIndex(item => (item.SelectedColor === ev.target.dataset.color) && (item.Id === ev.target.dataset.id));
+                    cartItems = cartItems.filter(item => item !== cartItems[index]);
                 
                     // Set updated cart items list in local storage
                     setLocalStorage(this.key, cartItems);
-                
                     this.updateCart();
                 });
             });
