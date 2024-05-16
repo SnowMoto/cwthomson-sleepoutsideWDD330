@@ -27,10 +27,10 @@ export default class CheckoutProcess {
     calculateOrdertotal() {
         // calculate the shipping and tax amounts. Then use them to along with the cart total to figure out the order total
         if (this.list.length > 1) {
-        this.shipping += 10;
-        this.shipping += (this.list.length - 1) * 2;  
+            this.shipping += 10;
+            this.shipping += (this.list.length - 1) * 2;  
         } else if (!this.list.length < 0) {
-        this.shipping += 10;
+            this.shipping += 10;
         }
 
         this.tax = this.itemTotal *= .06;
