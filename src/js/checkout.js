@@ -32,3 +32,9 @@ form.zip.addEventListener("blur", (ev) => {
         checkout.calculateOrdertotal();
     }
 });
+
+// Once the user submits the form, prevent the default
+form.addEventListener("submit", (ev) => {
+    ev.preventDefault();
+    checkout.checkout(ev.target);
+})

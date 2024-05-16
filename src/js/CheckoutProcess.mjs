@@ -86,8 +86,7 @@ export default class CheckoutProcess {
 
     async checkout(form) {
         // build the data object from the calculated fields, the items in the cart, and the information entered into the form
-        let data = {};
-        formDataToJSON(form).forEach((value, key) => data[key] = value);
+        let data = formDataToJSON(form);
 
         data["items"] = packageItems(this.list);
         data["orderDate"] = new Date();
@@ -97,6 +96,7 @@ export default class CheckoutProcess {
 
         // call the checkout method in our ExternalServices module and send it our data object.
         const externalServices = new ExternalServices();
-        externalServices.checkout(data);
+        const returnJson = await externalServices.checkout(data);
+        console.log(returnJson); // FOR TESTING PURPOSES IN THE TEAM ACTIVITY, CONSOLE LOG THE RETURN JSON
     }
 }

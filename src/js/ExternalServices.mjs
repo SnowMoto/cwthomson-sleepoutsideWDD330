@@ -30,6 +30,6 @@ export default class ExternalServices {
       body: JSON.stringify(orderObject)
     }
 
-    return await fetch("https://wdd330-backend.onrender.com:3000/checkout", options);
+    return await fetch(baseURL + "checkout", options);
   }
 }
