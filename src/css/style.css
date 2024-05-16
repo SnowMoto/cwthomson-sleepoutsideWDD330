@@ -114,6 +114,20 @@ button {
   border-bottom: 2px solid var(--primary-color);
 }
 
+.checkoutBtn-container {
+  margin: 2rem 0;
+}
+
+#checkoutBtn {
+  background-color: var(--secondary-color);
+  text-decoration: none;
+  color: white;
+  padding: 1rem;
+  font-size: var(--large-font);
+  font-weight: 700;
+  text-align: center;
+}
+
 /* End utility classes */
 
 /* Cart icon styles */
