@@ -21,9 +21,38 @@
 
 
   <main class="divider">
-    <section class="products">
-      <h2>Review & Place your Order</h2>
+    <div class="checkout-grid-container">
+      <section class="products">
+        <h2>Review & Place your Order</h2>
+        <form action="">
+          <fieldset>
+            <legend>Customer Name</legend>
+            <label>First Name:<input type="text" name="fname" required></label>
+            <label>Last Name:<input type="text" name="lname" required></label>
+          </fieldset>
+          <fieldset>
+            <legend>Address</legend>
+            <label>Street Address:<input type="text" name="street" required></label>
+            <label>City:<input type="text" name="city" required></label>
+            <label>State:<input type="text" name="state" required></label>
+            <label>Zip Code:<input type="number" name="zip" required></label>
+          </fieldset>
+          <fieldset>
+            <legend>Payment</legend>
+            <label>Credit Card Number:<input type="number" name="cardNumber" required></label>
+            <label>Expiration Date:<input type="text" name="expiration" required></label>
+            <label>Security Code:<input type="number" name="code" required></label>
+          </fieldset>
+          <input type="submit" value="Checkout">
+        </form>
+      </section>
+      <section id="orderSummary">
+        <h2>Order Summary</h2>
+        <div id="order-details">
+        </div>
     </section>
+    </div>
+
   </main>
   <footer id="footer"></footer>
 </body>
