@@ -1,3 +1,4 @@
+import CheckoutProcess from "./CheckoutProcess.mjs";
 import { loadHeaderFooter, setLocalStorage, getLocalStorage } from "./utils.mjs";
 
 loadHeaderFooter();
@@ -16,3 +17,18 @@ function bread() {
     }
 }
 bread();
+
+// Process the checkout
+const checkout = new CheckoutProcess("so-cart", document.querySelector("#order-details"));
+checkout.init();
+
+// Get form document from page
+const form = document.querySelector("form");
+
+// Once user supplies a zip code, calculate both shipping and tax, and display it
+form.zip.addEventListener("blur", (ev) => {
+    // Check if there is at least a number (not validating)
+    if (ev.target.value.length > 0) {
+        checkout.calculateOrdertotal();
+    }
+});
