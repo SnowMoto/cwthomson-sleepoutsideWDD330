@@ -111,6 +111,8 @@ button {
 }
 
 .divider {
+  padding-bottom: 1rem;
+  margin-bottom: 1rem;
   border-bottom: 2px solid var(--primary-color);
 }
 
@@ -545,4 +547,45 @@ form {
       margin: .9rem 0;
     }
   }
+}
+
+/* Styles for color swatch */
+.color-swatch {
+  padding: 0.1rem;
+  display: grid; 
+  grid-template-columns: repeat(auto-fit, minmax(104px, 1fr)); 
+  gap: 1rem;
+
+  & li {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    gap: .4rem;
+    align-items: center;
+    border: 2px solid var(--primary-color);
+    padding: 1rem;
+    cursor: pointer;
+
+    & img {
+      height: 2.5rem;
+      width: auto;
+    }
+  }
+
+  & li.selected {
+    border: 2px solid var(--secondary-color);
+    box-shadow: 1px 1px 10px var(--secondary-color);
+
+    & img {
+      border-radius: 5px;
+    }
+  }
+}
+
+img.selected-color {
+  height: 7rem;
+  width: auto;
+  border: 4px solid var(--primary-color);
+  border-radius: 2rem;
+  padding: 1rem .8rem;
 }
