@@ -37,4 +37,6 @@ form.zip.addEventListener("blur", (ev) => {
 form.addEventListener("submit", (ev) => {
     ev.preventDefault();
     checkout.checkout(ev.target);
+    window.location = "/checkout/success";
+    setLocalStorage("so-cart", []);
 })
