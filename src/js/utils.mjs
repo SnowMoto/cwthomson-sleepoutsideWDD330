@@ -128,3 +128,28 @@ export function animateCart() {
     document.querySelector(".cart svg").classList.remove("animate");
   }, 1200);
 }
+
+export function alertMessage(message, scroll=true) {
+  if (scroll)
+    window.scroll({ top: 0, left: 0, behavior: "smooth" });
+
+  const divElem = document.createElement("div");
+  divElem.classList.add("alerts");
+
+  for (const property in message) {
+    const paraElem = document.createElement("p");
+    paraElem.innerHTML = `${message[property]}`;
+  
+    const removeBtn = document.createElement("span");
+    removeBtn.classList.add("removeBtn");
+    removeBtn.textContent = "X";
+    removeBtn.addEventListener("click", () => {
+      divElem.removeChild(paraElem);
+    });
+    
+    paraElem.append(removeBtn);
+    divElem.appendChild(paraElem);
+  }
+
+  return divElem;
+}

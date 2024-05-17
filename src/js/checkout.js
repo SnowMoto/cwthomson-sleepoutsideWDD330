@@ -1,5 +1,5 @@
 import CheckoutProcess from "./CheckoutProcess.mjs";
-import { loadHeaderFooter, setLocalStorage, getLocalStorage } from "./utils.mjs";
+import { loadHeaderFooter, setLocalStorage, getLocalStorage, alertMessage } from "./utils.mjs";
 
 loadHeaderFooter();
 
@@ -34,9 +34,18 @@ form.zip.addEventListener("blur", (ev) => {
 });
 
 // Once the user submits the form, prevent the default
-form.addEventListener("submit", (ev) => {
+form.addEventListener("submit", async (ev) => {
     ev.preventDefault();
-    checkout.checkout(ev.target);
-    window.location = "/checkout/success";
-    setLocalStorage("so-cart", []);
+    const result = await checkout.checkout(ev.target);
+
+    if (result.message === "Order Placed") {
+        window.location = "/checkout/success";
+        setLocalStorage("so-cart", []);
+    }
+
+    const alertsElem = alertMessage(result.message);
+    
+    document
+        .querySelector("main.divider")
+        .prepend(alertsElem);
 })

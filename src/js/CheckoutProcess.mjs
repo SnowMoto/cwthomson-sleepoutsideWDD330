@@ -100,9 +100,9 @@ export default class CheckoutProcess {
         try {
             resultObject = await externalServices.checkout(data);
         } catch (err) {
-            // TODO
+            resultObject = err;
         }
 
-        console.log(resultObject); // FOR TESTING PURPOSES IN THE TEAM ACTIVITY, CONSOLE LOG THE RETURN JSON
+        return resultObject;
     }
 }
