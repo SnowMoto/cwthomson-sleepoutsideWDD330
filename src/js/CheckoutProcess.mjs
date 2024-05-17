@@ -96,7 +96,13 @@ export default class CheckoutProcess {
 
         // call the checkout method in our ExternalServices module and send it our data object.
         const externalServices = new ExternalServices();
-        const returnJson = await externalServices.checkout(data);
-        console.log(returnJson); // FOR TESTING PURPOSES IN THE TEAM ACTIVITY, CONSOLE LOG THE RETURN JSON
+        let resultObject
+        try {
+            resultObject = await externalServices.checkout(data);
+        } catch (err) {
+            // TODO
+        }
+
+        console.log(resultObject); // FOR TESTING PURPOSES IN THE TEAM ACTIVITY, CONSOLE LOG THE RETURN JSON
     }
 }
