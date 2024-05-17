@@ -122,7 +122,6 @@ export async function loadHeaderFooter() {
 
 // Shows css cart backpack icon animation when product added
 export function animateCart() {
-  window.scroll({ top: 0, left: 0, behavior: "smooth" });
   document.querySelector(".cart svg").classList.add("animate");
   setTimeout(() => {
     document.querySelector(".cart svg").classList.remove("animate");

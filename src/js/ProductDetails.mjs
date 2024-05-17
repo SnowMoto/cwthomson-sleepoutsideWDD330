@@ -1,4 +1,4 @@
-import { setLocalStorage, getLocalStorage, updateCartSuperscript, addDiscountDetails, animateCart } from "./utils.mjs";
+import { setLocalStorage, getLocalStorage, updateCartSuperscript, addDiscountDetails, animateCart, alertMessage } from "./utils.mjs";
 
 export default class ProductDetails {
     constructor(productId, dataSource) {
@@ -75,8 +75,13 @@ export default class ProductDetails {
             product["qty"]++;
         }
         setLocalStorage("so-cart", cartItems);
+        // Alert the user of item added
         animateCart();
         updateCartSuperscript();
+        const alertElem = alertMessage({ message: "Item Added to Cart!" })
+        document
+            .querySelector("main.divider")
+            .prepend(alertElem);
     }
 
     isProductInCart(cartList, product) {
