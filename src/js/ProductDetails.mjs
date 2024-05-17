@@ -15,6 +15,9 @@ export default class ProductDetails {
         // once the HTML is rendered we can add a listener to Add to Cart button
         this.renderProductDetails();
 
+        // Update page's title
+        document.title = `Sleep Outside | ${this.product.Name}`;
+
         // Display discount Information
         addDiscountDetails(this.product);
 
