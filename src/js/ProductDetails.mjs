@@ -78,7 +78,7 @@ export default class ProductDetails {
         // Alert the user of item added
         animateCart();
         updateCartSuperscript();
-        const alertElem = alertMessage({ message: "Item Added to Cart!" })
+        const alertElem = alertMessage({ message: `${this.product.NameWithoutBrand} Succesfully Added to Cart!` })
         document
             .querySelector("main.divider")
             .prepend(alertElem);
