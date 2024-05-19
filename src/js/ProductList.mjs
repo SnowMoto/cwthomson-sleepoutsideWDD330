@@ -8,6 +8,7 @@ function productCardTemplate(product) {
                     <h2 class="card__name">${product.NameWithoutBrand}</h2>
                     <p class="product-card__price">$${product.ListPrice} <span>${calculateDiscount(product)}</span></p>
                 </a>
+                <button class="quick-view myBtn" data-product-id="${product.Id}">Take a look</button>
             </li>`
 }
 

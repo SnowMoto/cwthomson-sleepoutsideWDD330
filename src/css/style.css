@@ -146,6 +146,7 @@ button {
 .cart:hover svg {
   fill: gray;
 }
+
 /* End cart icon styles */
 
 /* Style for animating cart icon when item added */
@@ -154,11 +155,23 @@ button {
 }
 
 @keyframes product-added {
-  0% { transform: translateY(0); }
-  25% { transform: translateY(-4px) rotate(7deg); }
-  50% { transform: translateY(0) rotate(0deg); }
-  75% { transform: translateY(-4px) rotate(-7deg); }
+  0% {
+    transform: translateY(0);
+  }
+
+  25% {
+    transform: translateY(-4px) rotate(7deg);
+  }
+
+  50% {
+    transform: translateY(0) rotate(0deg);
+  }
+
+  75% {
+    transform: translateY(-4px) rotate(-7deg);
+  }
 }
+
 /* End cart animation style */
 
 /* Styles for superscript above cart backpack icon */
@@ -534,7 +547,7 @@ form {
 /* Styles for order summary */
 #orderSummary {
   padding: 0.5em;
-  
+
   & div {
     background-color: var(--primary-color);
     padding: 1rem 2.5rem;
@@ -547,6 +560,22 @@ form {
     }
   }
 }
+
+
+/*//Quick view//*/
+dialog {
+  text-align: center;
+  max-width: 55%;
+  width: 100%;
+}
+
+dialog button {
+  background-color: #000607;
+}
+
+.myBtn {
+  font-size: 1rem;
+  margin: 25px auto;
 
 /* Styles for color swatch */
 .color-swatch {
