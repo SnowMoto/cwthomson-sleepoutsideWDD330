@@ -417,7 +417,6 @@ footer {
 /* Breadcrumbs! */
 .breadcrumb {
   background-color: var(--white-bg);
-  box-shadow: 0 0 4px 1px rgba(200, 200, 200, 0.2);
   width: max-content;
   position: relative;
   left: -30px;
@@ -617,5 +616,35 @@ img.selected-color {
   border: 4px solid var(--primary-color);
   border-radius: 2rem;
   padding: 1rem .8rem;
+}
 
+/* Style for success message */
+.order-success {
+  text-align: center;
+  background-color: rgba(0, 255, 0, .2);
+  padding: 2rem;
+  margin: 2rem 1rem;
+  border: 1px solid green;
+  border-radius: 15px;
+  font-size: 20pt;
+}
+
+/* Style for alerts */
+div.alerts {
+  & p {
+    position: relative;
+    margin: .5rem;
+    padding: 1rem;
+    background-color: rgba(240, 168, 104, .5);
+    font-weight: 700;
+    border-radius: 10px;
+    border: 2px solid var(--primary-color);
+  }
+
+  & span {
+    position: absolute;
+    right: 1rem;
+    cursor: pointer;
+    margin-left: 1rem;
+  }
 }

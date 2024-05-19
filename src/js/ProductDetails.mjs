@@ -1,4 +1,4 @@
-import { setLocalStorage, getLocalStorage, updateCartSuperscript, addDiscountDetails, animateCart } from "./utils.mjs";
+import { setLocalStorage, getLocalStorage, updateCartSuperscript, addDiscountDetails, animateCart, alertMessage } from "./utils.mjs";
 
 export default class ProductDetails {
     constructor(productId, dataSource) {
@@ -14,6 +14,9 @@ export default class ProductDetails {
         // once we have the product details we can render out the HTML
         // once the HTML is rendered we can add a listener to Add to Cart button
         this.renderProductDetails();
+
+        // Update page's title
+        document.title = `Sleep Outside | ${this.product.Name}`;
 
         // Display discount Information
         addDiscountDetails(this.product);
@@ -72,8 +75,13 @@ export default class ProductDetails {
             product["qty"]++;
         }
         setLocalStorage("so-cart", cartItems);
+        // Alert the user of item added
         animateCart();
         updateCartSuperscript();
+        const alertElem = alertMessage({ message: `${this.product.NameWithoutBrand} Succesfully Added to Cart!` })
+        document
+            .querySelector("main.divider")
+            .prepend(alertElem);
     }
 
     isProductInCart(cartList, product) {
