@@ -18,12 +18,42 @@ export default class ProductDetails {
         // Display discount Information
         addDiscountDetails(this.product);
 
+        // If ul list of colors exist, add event listener to listen to swatch image changes
+        if (this.product.Colors.length > 1) {
+            // Remove unique color
+            document
+                .querySelector(".product__color")
+                .innerHTML = '';
+
+            const liElem = document.querySelectorAll(".color-swatch li");
+            // Add the default (first item is the selected)
+            liElem[0].classList.add("selected");
+
+            liElem.forEach((item) => {
+                item.addEventListener("click", () => {
+                    // Ensure the target is the li element (even if event triggered by a child element)
+                    liElem.forEach((item) => item.classList.remove("selected"));
+                    item.classList.add("selected");
+                });
+            });
+        } 
+
         // Notice the .bind(this). Our callback will not work if we don't include that line. Review the readings from this week on 'this' to understand why.
         document.getElementById('addToCart')
             .addEventListener('click', this.addToCart.bind(this));
     }
 
     addToCart() {
+        // Add product color preferences properties (if more than one color in product)
+        if (this.product.Colors.length > 1) {
+            const selectedColorElem = document.querySelector(".color-swatch li.selected");
+            this.product["SelectedColor"] = selectedColorElem.dataset.color;
+            this.product["SelectColorImg"] = selectedColorElem.dataset.img;
+        } else {
+            this.product["SelectedColor"] = this.product.Colors[0].ColorName;
+            this.product["SelectColorImg"] = this.product.Images.PrimaryMedium;
+        }
+
         let cartItems = [];
         const cart = getLocalStorage("so-cart");
         if (cart !== null) {
@@ -36,11 +66,10 @@ export default class ProductDetails {
             cartItems.push(this.product);
         } else {
             // Get product from cartItems
-            let product = cartItems[cartItems.findIndex(item => item.Id === this.product.Id)];
+            let product = cartItems[cartItems.findIndex(item => (item.Id === this.product.Id) && (item.SelectedColor === this.product.SelectedColor))];
 
             // Update quantity
-            let qty = product["qty"];
-            product["qty"] = qty + 1;
+            product["qty"]++;
         }
         setLocalStorage("so-cart", cartItems);
         animateCart();
@@ -48,7 +77,7 @@ export default class ProductDetails {
     }
 
     isProductInCart(cartList, product) {
-        const index = cartList.findIndex((item) => item.Id === product.Id);       
+        const index = cartList.findIndex((item) => (item.Id === product.Id) && (item.SelectedColor === product.SelectedColor));
         return (index === -1) ? false : true;
     }
 
@@ -64,10 +93,24 @@ export default class ProductDetails {
                             />
                             <p class="product-card__price">$${this.product.ListPrice}</p>
                             <p class="product__color">${this.product.Colors[0].ColorName}</p>
+                            ${this.renderColorSwatch()}
                             <p class="product__description">${this.product.DescriptionHtmlSimple}</p>
                             <div class="product-detail__add">
                                 <button id="addToCart" data-id="${this.product.Id}">Add to Cart</button>
                             </div>`
         main.appendChild(section);
+    }
+
+    renderColorSwatch() {
+        if (this.product.Colors.length > 1) {
+            let html = `<h4>All Available Colors:</h4><ul class="color-swatch">`;
+            this.product.Colors.forEach(color => {
+                html += `<li data-img="${color.ColorPreviewImageSrc}" data-color="${color.ColorName}"><img src="${color.ColorPreviewImageSrc}" alt="${this.product.Name + ' ' + color.ColorName}">${color.ColorName}</li>`
+            });
+            html += `</ul>`;
+            return html;
+        } else {
+            return '';
+        }
     }
 }
