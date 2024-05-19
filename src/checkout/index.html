@@ -27,21 +27,21 @@
         <form action="">
           <fieldset>
             <legend>Customer Name</legend>
-            <label>First Name:<input type="text" name="fname" required></label>
-            <label>Last Name:<input type="text" name="lname" required></label>
+            <label>First Name:<input type="text" name="fname" pattern="^([a-zA-Z]{2,})([a-zA-Z\s]*)$" title="Enter a valid name, no digits" required></label>
+            <label>Last Name:<input type="text" name="lname" pattern="^([a-zA-Z]{2,})([a-zA-Z\s]*)$" title="Enter a valid name, no digits" required></label>
           </fieldset>
           <fieldset>
             <legend>Address</legend>
             <label>Street Address:<input type="text" name="street" required></label>
-            <label>City:<input type="text" name="city" required></label>
-            <label>State:<input type="text" name="state" required></label>
+            <label>City:<input type="text" name="city" pattern="^\D+$" title="Enter a valid city" required></label>
+            <label>State:<input type="text" name="state" pattern="^[A-Z]{2}$" title="Enter a valid US state in capital letters" required></label>
             <label>Zip Code:<input type="number" name="zip" required></label>
           </fieldset>
           <fieldset>
             <legend>Payment</legend>
             <label>Credit Card Number:<input type="number" name="cardNumber" required></label>
-            <label>Expiration Date:<input type="text" name="expiration" required></label>
-            <label>Security Code:<input type="number" name="code" required></label>
+            <label>Expiration Date:<input type="text" name="expiration" pattern="^(0[1-9]|1[0-3])\/(2[4-9]|3[0-9])$" title="Provide a valid expiration date: 'mm/yy'" required></label>
+            <label>Security Code:<input type="number" name="code" required title="Enter a valid Security code: '000'"></label>
           </fieldset>
           <input type="submit" value="Checkout">
         </form>
