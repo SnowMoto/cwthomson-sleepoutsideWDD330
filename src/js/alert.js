@@ -37,10 +37,11 @@ export default class Alert {
     }
 }
 
-document.addEventListener('DOMContentLoaded', async () => {
+document.addEventListener("DOMContentLoaded", async () => {
     const alertHandler = new Alert();
     await alertHandler.loadAlerts();
     alertHandler.getAlerts();
 });
+
 
 
