@@ -15,6 +15,7 @@ function cartItemTemplate(item) {
                 <p class="cart-card__quantity">qty: <input class="qtyInput" type="number" value="${item.qty}" min=0 data-id="${item.Id}" data-color="${item.SelectedColor}"></p>
                 <p class="cart-card__price">$${item.FinalPrice}</p>
                 <span data-id="${item.Id}" data-color="${item.SelectedColor}" class="cart-card__remove">x</span>
+                <!--<button class="move-to-wishlist" data-id="${item.Id}" data-color="${item.SelectedColor}">Move to Wishlist</button>-->
             </li>`;
   }
 
@@ -100,5 +101,26 @@ export default class ShoppingCart {
 
     calculateTotal(cartItems) {
         return cartItems.reduce((total, items) => total + (items.FinalPrice * items.qty), 0);
+    }
+/////////// WISHLIST STUFF //////////////
+    moveToWishlist(item) {
+        let wishlistItems = getLocalStorage('wish-cart') || [];
+        
+        wishlistItems.push(item);
+        
+        setLocalStorage('wish-cart', wishlistItems);
+        
+        this.removeFromCart();
+        
+        alert('Item moved to wishlist!');
+    }
+
+    removeFromCart(productId, productColor) {
+        let cartItems = getLocalStorage(this.key);
+        
+        const index = cartItems.findIndex(item => (item.SelectedColor === productColor) && (item.Id === productId));
+        cartItems = cartItems.filter(item => item !== cartItems[index]);
+        
+        setLocalStorage(this.key, cartItems);
     }
 }

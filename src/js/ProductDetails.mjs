@@ -44,6 +44,8 @@ export default class ProductDetails {
         // Notice the .bind(this). Our callback will not work if we don't include that line. Review the readings from this week on 'this' to understand why.
         document.getElementById('addToCart')
             .addEventListener('click', this.addToCart.bind(this));
+        document.getElementById("addToWishlist")
+            .addEventListener('click', this.addToWishlist.bind(this));
     }
 
     addToCart() {
@@ -105,6 +107,7 @@ export default class ProductDetails {
                             <p class="product__description">${this.product.DescriptionHtmlSimple}</p>
                             <div class="product-detail__add">
                                 <button id="addToCart" data-id="${this.product.Id}">Add to Cart</button>
+                                <button id="addToWishlist" data-id="${this.product.Id}">Add to Wishlist</button>
                             </div>`
         main.appendChild(section);
     }
@@ -120,5 +123,51 @@ export default class ProductDetails {
         } else {
             return '';
         }
+    }
+
+
+
+    ///////// WISHLIST SECTION ///////////
+    addToWishlist() {
+        // Add product color preferences properties (if more than one color in product)
+        if (this.product.Colors.length > 1) {
+            const selectedColorElem = document.querySelector(".color-swatch li.selected");
+            this.product["SelectedColor"] = selectedColorElem.dataset.color;
+            this.product["SelectColorImg"] = selectedColorElem.dataset.img;
+        } else {
+            this.product["SelectedColor"] = this.product.Colors[0].ColorName;
+            this.product["SelectColorImg"] = this.product.Images.PrimaryMedium;
+        }
+
+        let wishItems = [];
+        const wish = getLocalStorage("wish-cart");
+        if (wish !== null) {
+            wish.forEach((object) => wishItems.push(object));
+        }
+
+        // Push the "product" property of the instance of the class
+        if (!this.isProductInWishlist(wishItems, this.product)) {
+            this.product["qty"] = 1;
+            wishItems.push(this.product);
+        } else {
+            // Get product from cartItems
+            let product = wishItems[wishItems.findIndex(item => (item.Id === this.product.Id) && (item.SelectedColor === this.product.SelectedColor))];
+
+            // Update quantity
+            product["qty"]++;
+        }
+        setLocalStorage("wish-cart", wishItems);
+        // Alert the user of item added, not neccessary for the wishlist
+        //animateCart();
+        updateCartSuperscript();
+        const alertElem = alertMessage({ message: `${this.product.NameWithoutBrand} Succesfully Added to WishList!` })
+        document
+            .querySelector("main.divider")
+            .prepend(alertElem);
+    }
+
+    isProductInWishlist(wishList, product) {
+        const index = wishList.findIndex((item) => (item.Id === product.Id) && (item.SelectedColor === product.SelectedColor));
+        return (index === -1) ? false : true;
     }
 }
