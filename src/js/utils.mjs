@@ -120,6 +120,18 @@ export async function loadHeaderFooter() {
   renderWithTemplate(footerTemp, footerElem, updateCartSuperscript);
 }
 
+
+document.addEventListener("DOMContentLoaded", function() {
+  let banner = document.getElementById("banner");
+
+  // Check if it's the first visit and show the popup
+  if (!localStorage.getItem("visited")) {
+    banner.style.display = "block";
+    localStorage.setItem("visited", true);
+  }else{
+    return banner.style.display = "none";
+  }
+});
 // Shows css cart backpack icon animation when product added
 export function animateCart() {
   document.querySelector(".cart svg").classList.add("animate");
